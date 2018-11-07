@@ -18,16 +18,20 @@ class XBlockInstall(_install):
         Compiles textual translations files(.po) to binary(.mo) files.
         """
         self.announce('Compiling translations')
+        self.announce('COMPILING TRANSLATIONS', 4)
         try:
             for dirname, _, files in os.walk(os.path.join('recommender', 'translations')):
                 for fname in files:
+                    self.announce("FILENAME IS: %s" % fname, 4)
                     if os.path.splitext(fname)[1] == '.po':
                         po_path = os.path.join(dirname, fname)
                         mo_path = os.path.splitext(po_path)[0] + '.mo'
                         self.announce('Compiling translation at %s' % po_path)
+                        self.announce('COMPILING TRANSLATION HERE: %s' % po_path, 4)
                         subprocess.check_call(['msgfmt', po_path, '-o', mo_path], cwd=self.install_lib)
         except Exception as ex:
-            self.announce('Translations compilation failed: %s', ex.message)
+            self.announce('Translations compilation failed: %s' % ex.message)
+            self.announce('ACTUALLY FAILURE MESSAGE: %s' % ex.message)
 
 
 def package_data(pkg, root_list):
