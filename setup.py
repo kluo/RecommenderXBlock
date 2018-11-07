@@ -31,7 +31,7 @@ class XBlockInstall(_install):
                         subprocess.check_call(['msgfmt', po_path, '-o', mo_path], cwd=self.install_lib)
         except Exception as ex:
             self.announce('Translations compilation failed: %s' % ex.message)
-            self.announce('ACTUALLY FAILURE MESSAGE: %s' % ex.message)
+            self.announce('ACTUALLY FAILURE MESSAGE: %s', ex.message)
 
 
 def package_data(pkg, root_list):
