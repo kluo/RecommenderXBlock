@@ -24,14 +24,13 @@ class XBlockInstall(_install):
                     if os.path.splitext(fname)[1] == '.po':
                         po_path = os.path.join(dirname, fname)
                         mo_path = os.path.splitext(po_path)[0] + '.mo'
-                        self.announce('Compiling translation at %s' % po_path)
+                        self.announce('Compiling translation at %s' % po_path, 4)
+                        self.announce('CALLING MSGFMT FROM DIR: %s' % self.install_lib, 4)
                         subprocess.check_call(['msgfmt', po_path, '-o', mo_path], cwd=self.install_lib)
             self.announce('FINISHED THE COMPILING SO WHY IS IT GOING TO EXCEPT CLAUSE???', 4)
         except Exception as ex:
-            self.announce('INSIDE EXCEPTION!!!!!', 4)
             self.announce('Translations compilation failed: %s' % ex.message, 4)
-            self.announce(repr(ex), 4)
-            self.announce('OK NOW FOR FAILING SYNTAX', 4)
+            self.announce(ex.filename, 4)
             self.announce('BAD SYNTAX FAIL: %s', ex.message)
 
 
