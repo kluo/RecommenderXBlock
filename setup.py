@@ -28,6 +28,8 @@ class XBlockInstall(_install):
                         mo_path = os.path.splitext(po_path)[0] + '.mo'
                         self.announce('Compiling translation at %s' % po_path, 4)
                         self.announce('CALLING MSGFMT FROM DIR: %s' % self.install_lib, 4)
+                        self.announce(os.path.exists(self.install_lib), 4)
+                        self.announce('Just printed if the install lib exists', 4)
                         subprocess.check_call(['msgfmt', po_path, '-o', mo_path], cwd=self.install_lib)
                         self.announce('FINISHED CALLING THE MSGFMT!!!', 4)
             self.announce('FINISHED THE COMPILING', 4)
@@ -35,6 +37,7 @@ class XBlockInstall(_install):
             self.announce('Translations compilation failed: %s' % repr(ex), 4)
             self.announce('The failing filename: %s' % ex.filename, 4)
             #self.announce('BAD SYNTAX FAIL: %s', ex.message)
+        self.announce('blah %s', 'random')
 
 def package_data(pkg, root_list):
     """Generic function to find package_data for `pkg` under `root`."""
