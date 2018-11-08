@@ -27,11 +27,12 @@ class XBlockInstall(_install):
                         self.announce('Compiling translation at %s' % po_path, 4)
                         self.announce('CALLING MSGFMT FROM DIR: %s' % self.install_lib, 4)
                         subprocess.check_call(['msgfmt', po_path, '-o', mo_path], cwd=self.install_lib)
-            self.announce('FINISHED THE COMPILING SO WHY IS IT GOING TO EXCEPT CLAUSE???', 4)
+            self.announce('FINISHED THE COMPILING', 4)
+            raise Exception('FORCED ERROR')
         except Exception as ex:
-            self.announce('Translations compilation failed: %s' % ex.message, 4)
-            self.announce(ex.filename, 4)
-            self.announce('BAD SYNTAX FAIL: %s', ex.message)
+            self.announce('Translations compilation failed: %s' % repr(ex), 4)
+            self.announce("FORCED INTO HERE EVEN WITH NO BAD SYNTAX", 4)
+            #self.announce('BAD SYNTAX FAIL: %s', ex.message)
 
 
 def package_data(pkg, root_list):
