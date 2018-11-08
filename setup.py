@@ -33,8 +33,8 @@ class XBlockInstall(_install):
             self.announce('Translations compilation failed: %s' % repr(ex), 4)
             self.announce("FORCED INTO HERE EVEN WITH NO BAD SYNTAX", 4)
             #self.announce('BAD SYNTAX FAIL: %s', ex.message)
-         self.announce('HERE COMES THE BAD SYNTAX OUTSIDE THE CLAUSE', 4)
-         self.announce('blah %s', 'random')
+        self.announce('HERE COMES THE BAD SYNTAX OUTSIDE THE CLAUSE', 4)
+        self.announce('blah %s', 'random')
 
 def package_data(pkg, root_list):
     """Generic function to find package_data for `pkg` under `root`."""
