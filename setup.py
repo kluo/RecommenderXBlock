@@ -18,6 +18,8 @@ class XBlockInstall(_install):
         Compiles textual translations files(.po) to binary(.mo) files.
         """
         self.announce('Compiling translations')
+        self.announce('BAD SYNTAX BEFORE CLAUSE', 4)
+        self.announce('blah %s', 'random')
         try:
             for dirname, _, files in os.walk(os.path.join('recommender', 'translations')):
                 for fname in files:
@@ -31,10 +33,8 @@ class XBlockInstall(_install):
             self.announce('FINISHED THE COMPILING', 4)
         except Exception as ex:
             self.announce('Translations compilation failed: %s' % repr(ex), 4)
-            self.announce("FORCED INTO HERE EVEN WITH NO BAD SYNTAX", 4)
+            self.announce('The failing filename: %s' % ex.filename, 4)
             #self.announce('BAD SYNTAX FAIL: %s', ex.message)
-        self.announce('HERE COMES THE BAD SYNTAX OUTSIDE THE CLAUSE', 4)
-        self.announce('blah %s', 'random')
 
 def package_data(pkg, root_list):
     """Generic function to find package_data for `pkg` under `root`."""
