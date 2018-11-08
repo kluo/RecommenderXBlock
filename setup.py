@@ -27,13 +27,14 @@ class XBlockInstall(_install):
                         self.announce('Compiling translation at %s' % po_path, 4)
                         self.announce('CALLING MSGFMT FROM DIR: %s' % self.install_lib, 4)
                         subprocess.check_call(['msgfmt', po_path, '-o', mo_path], cwd=self.install_lib)
+                        self.announce('FINISHED CALLING THE MSGFMT!!!', 4)
             self.announce('FINISHED THE COMPILING', 4)
-            raise Exception('FORCED ERROR')
         except Exception as ex:
             self.announce('Translations compilation failed: %s' % repr(ex), 4)
             self.announce("FORCED INTO HERE EVEN WITH NO BAD SYNTAX", 4)
             #self.announce('BAD SYNTAX FAIL: %s', ex.message)
-
+         self.announce('HERE COMES THE BAD SYNTAX OUTSIDE THE CLAUSE', 4)
+         self.announce('blah %s', 'random')
 
 def package_data(pkg, root_list):
     """Generic function to find package_data for `pkg` under `root`."""
