@@ -18,8 +18,6 @@ class XBlockInstall(_install):
         Compiles textual translations files(.po) to binary(.mo) files.
         """
         self.announce('Compiling translations')
-        self.announce('BAD SYNTAX BEFORE CLAUSE', 4)
-        self.announce('blah %s', 'random')
         try:
             for dirname, _, files in os.walk(os.path.join('recommender', 'translations')):
                 for fname in files:
@@ -37,6 +35,7 @@ class XBlockInstall(_install):
             self.announce('Translations compilation failed: %s' % repr(ex), 4)
             self.announce('The failing filename: %s' % ex.filename, 4)
             #self.announce('BAD SYNTAX FAIL: %s', ex.message)
+        self.announce('FAILING AFTER AGAIN', 4)
         self.announce('blah %s', 'random')
 
 def package_data(pkg, root_list):
