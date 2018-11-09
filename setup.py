@@ -12,7 +12,7 @@ class XBlockInstall(_install):
     def run(self):
         _install.run(self)
         self.compile_translations()
-        self.announce('blah %s', 'random')
+        #self.announce('blah %s', 'random')
 
     def compile_translations(self):
         """
