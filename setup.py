@@ -29,8 +29,8 @@ class XBlockInstall(_install):
                         self.announce('CALLING MSGFMT FROM DIR: %s' % self.install_lib, 4)
                         self.announce(os.path.exists(self.install_lib), 4)
                         self.announce('Just printed if the install lib exists', 4)
-                        checking = subprocess.check_output(['which', 'msgfmt'])
-                        self.announce(checking, 4)
+                        result = subprocess.check_output(['which', 'msgfmt'], cwd=self.install_lib)
+                        self.announce(result, 4)
                         self.announce("JUST PRINTED THE MSGFMT LOCATION, NOW FOR THE MO", 4)
                         self.announce(mo_path, 4)
                         subprocess.check_call(['msgfmt', po_path, '-o', mo_path], cwd=self.install_lib)
@@ -38,7 +38,7 @@ class XBlockInstall(_install):
             self.announce('FINISHED THE COMPILING', 4)
         except Exception as ex:
             self.announce('Translations compilation failed: %s' % repr(ex), 4)
-            self.announce('The failing filename: %s' % ex.filename, 4)
+            self.announce(ex, 4)
             #self.announce('BAD SYNTAX FAIL: %s', ex.message)
         self.announce('FAILING AFTER AGAIN', 4)
 
